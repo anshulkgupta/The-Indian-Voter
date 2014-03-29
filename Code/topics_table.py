@@ -26,7 +26,7 @@ twitter_api = twitter.Twitter(auth=auth)
 
 q = '#AAP' 
 
-count = 100
+count = 10000
 
 # See https://dev.twitter.com/docs/api/1.1/get/search/tweets
 
