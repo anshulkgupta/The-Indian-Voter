@@ -27,9 +27,13 @@ twitter_api = twitter.Twitter(auth=auth)
 q = '#AAP' 
 count = 100
 
+# Get my location of the user
+my_lat = 42.2781410217
+my_lon = -74.9159927368
+
 # See https://dev.twitter.com/docs/api/1.1/get/search/tweets
 
-search_results = twitter_api.search.tweets(q=q, count=count)
+search_results = twitter_api.search.tweets(q=q, count=count, geocode=my_lat,my_lon,100km)
 
 statuses = search_results['statuses']
 
