@@ -1,0 +1,11 @@
+
+*.pyc
+.Python
+include/
+lib/
+bin/
+build/
+TODO.txt
+test.txt
+*.db
+
