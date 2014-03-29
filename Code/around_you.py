@@ -28,7 +28,7 @@ q = '#AAP'
 count = 100
 
 # Get my location of the user
-geocode = '42.2781410217, -74.9159927368, 100km'
+geocode = '42.2781410217, -74.9159927368, 100000km'
 
 # See https://dev.twitter.com/docs/api/1.1/get/search/tweets
 
