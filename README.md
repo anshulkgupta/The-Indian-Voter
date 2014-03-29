@@ -13,4 +13,4 @@ Revised Objective:
 3. If yes, then push it to mysql database containing tweet handle, message, geolocation data, hashtags used.
 4. Export db file and use D3 / CartoDb to map it.
 
-I'm working on file called download_data.py
+I'm working on file called download_data.py in Code folder.
