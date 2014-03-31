@@ -10,8 +10,7 @@ import sqlite3
 class StdOutListener( tweepy.StreamListener):
 	def on_data(self, data):
 		tweet_match = py_tweet.tweet(data)
-		should_put = contains_geo(tweet_match)
-		if should_put:
+		if tweet_match.longitude:
 			print getattr(tweet_match,'time')
 			sql_insert = """
 			INSERT or IGNORE
@@ -20,10 +19,6 @@ class StdOutListener( tweepy.StreamListener):
 			db.cursor().execute( sql_insert , tweet_match.get_tuple() )
 			db.commit()
 		
-		return True
-
-	def contains_geo(tweet_match):
-		print tweet_match
 		return True
 
 def start_record(db_name):
