@@ -7,7 +7,7 @@ import atexit
 import py_tweet
 import sqlite3
 
-class StdOutListener( tweepy.streaming.StreamListener):
+class StdOutListener( tweepy.StreamListener):
 	def on_data(self, data):
 		tweet_match = py_tweet.tweet(data)
 
@@ -52,11 +52,11 @@ def clean_up( db ):
 
 if __name__ == '__main__':
 	listener = StdOutListener()
-	auth = OAuthHandler(credentials.consumer_key, 
+	auth = tweepy.OAuthHandler(credentials.consumer_key, 
 		credentials.consumer_secret)
 	auth.set_access_token(credentials.access_token,
 		credentials.access_token_secret)
-	stream = Stream(auth, listener)	
+	stream = tweepy.streaming.Stream(auth, listener)	
 
 	query = "AAP"
 
@@ -65,5 +65,5 @@ if __name__ == '__main__':
 	print db_name
 	db = start_record(db_name)
 
-	stream.filter( track = query )
+	stream.filter(track=['curiosity'])
 
