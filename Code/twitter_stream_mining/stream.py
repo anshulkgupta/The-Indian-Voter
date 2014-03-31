@@ -11,7 +11,7 @@ class StdOutListener( tweepy.streaming.StreamListener):
 	def on_data(self, data):
 		tweet_match = py_tweet.tweet(data)
 
-		if hashtag_filter(tweet_match.message):
+		if tweet_match.message:
 			print getattr(tweet_match,'time')
 			sql_insert = """
 			INSERT or IGNORE
@@ -21,20 +21,6 @@ class StdOutListener( tweepy.streaming.StreamListener):
 			db.commit()
 		
 		return True
-
-# Requires ONE hashtag to be in the tweet.
-def hashtag_OR_filter(message):
-	for query in hashtag_queries:
-		if query in message:
-			return True
-	return False
-
-# Requres ALL hashtags to be in the tweet.
-def hashtag_AND_filter(message):
-	for query in hashtag_queries:
-		if query not in message:
-			return False
-	return True
 
 def start_record(db_name):
 	sql_init = """
@@ -72,22 +58,12 @@ if __name__ == '__main__':
 		credentials.access_token_secret)
 	stream = Stream(auth, listener)	
 
-	query = str(raw_input('Enter the hashtags you would like to search for '
-				+ 'separated by spaces: ')).lower()
-	hashtag_queries = query.split(' ')
+	query = "AAP"
 
-	search_type = str( raw_input('Should returned tweets include all or >=1 hashtags? Enter '+
-		'"all" or "one"')).lower()
+	db_name = query
 
-	if 'all' in search_type:
-		hashtag_filter = hashtag_AND_filter
-		db_name = '_AND_'.join(hashtag_queries)
-	else:
-		hashtag_filter = hashtag_OR_filter
-		db_name = '_OR_'.join(hashtag_queries)
-	
 	print db_name
 	db = start_record(db_name)
 
-	stream.filter( track = hashtag_queries )
+	stream.filter( track = query )
 
