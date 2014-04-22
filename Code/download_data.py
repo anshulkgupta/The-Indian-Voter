@@ -8,10 +8,6 @@ import json
 # See https://dev.twitter.com/docs/auth/oauth for more information 
 # on Twitter's OAuth implementation.
 
-CONSUMER_KEY = 'fTVGqEOwEtS5jCSV2ZA'
-CONSUMER_SECRET = '5epDQkOVCUMhSc2f7JK4Gw3uJ63hPEtMIdAAzDOptE'
-OAUTH_TOKEN = '604597818-dkfIvsfKdukbqe1Ay1KvZq4k0NcrEv5hYw4qj86B'
-OAUTH_TOKEN_SECRET = '4MLU0w8kCoGkCmtw8sOtNspqBOfO33Wcdg5mkq73JGt51'
 
 auth = twitter.oauth.OAuth(OAUTH_TOKEN, OAUTH_TOKEN_SECRET,
                            CONSUMER_KEY, CONSUMER_SECRET)
